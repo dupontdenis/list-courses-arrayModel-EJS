@@ -217,13 +217,6 @@ This project uses ES Modules syntax:
 - `lodash`: Utility library for data manipulation
 - `debug`: Small debugging utility
 
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## License
 
@@ -231,8 +224,7 @@ ISC
 
 ## Author
 
-Your Name
-
+copirate : superD
 ---
 
 **Note**: This application uses an in-memory array for data storage. Data will be lost when the server restarts. For production use, consider integrating a database like MongoDB, PostgreSQL, or MySQL.
