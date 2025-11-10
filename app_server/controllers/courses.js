@@ -8,7 +8,14 @@ const debugForm = debug("app_server:form");
 const coursesReadAll = async (req, res) => {
   debugReadAll("-------------- READ ALL-------------------------------");
   try {
-    const response = await fetch("http://localhost:3000/api/courses");
+    debugReadAll(`req.query: ${JSON.stringify(req.query)}`);
+    // Build query string from req.query
+    const params = new URLSearchParams(req.query).toString();
+    debugReadAll(`Query params: ${params}`);
+    const apiUrl = params
+      ? `http://localhost:3000/api/courses?${params}`
+      : "http://localhost:3000/api/courses";
+    const response = await fetch(apiUrl);
     const data = await response.json();
     res.render("courses-list", {
       courses: data.courses,

@@ -11,15 +11,15 @@
 
 <body>
   <h1>Courses</h1>
-  <ol>
+  <ul>
     <% courses.forEach(function(val) { %>
       <li>
         <a href="/courses/<%= val.id %>">
-          <%= val.name %>
+          <%= val.name %> (<%= val.ects %> ECTS)
         </a>
       </li>
       <% }); %>
-  </ol>
+  </ul>
   <a class="btn btn-info" href="/courses/new">NEW</a>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

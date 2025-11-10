@@ -98,6 +98,29 @@ A modern Express.js application for managing courses, built with ES Modules and 
 | PUT    | `/api/courses/:id` | Update a course       |
 | DELETE | `/api/courses/:id` | Delete a course       |
 
+### Sorting Feature
+
+You can sort courses by one or more fields using the `sortBy` and `sortOrder` query parameters in the API and web routes.
+
+**Example:**
+
+```
+http://localhost:3000/courses?sortBy=ects,name&sortOrder=asc
+```
+
+This will sort courses first by ECTS (ascending), then by name (ascending).
+
+**Fields:**
+
+- `sortBy`: Comma-separated list of fields (e.g., `name`, `ects`, `id`)
+- `sortOrder`: `asc` or `desc` (applies to all fields)
+
+**Test it:**
+
+- Open your browser and visit: `http://localhost:3000/courses?sortBy=ects,name&sortOrder=asc`
+
+The API and frontend will display sorted results accordingly.
+
 ## Web Routes
 
 | Method | Endpoint              | Description                  |
@@ -133,6 +156,14 @@ On the course details page, click the "Delete" button to remove the course.
 ### Debug Mode
 
 The application uses the `debug` module for logging. To enable debug output:
+
+**Observe query parameters in course listing:**
+
+```bash
+DEBUG=app_server:readAll node index.js
+```
+
+This will show debug logs for all `/courses` requests, including the query parameters used for sorting.
 
 **Windows (CMD)**
 
@@ -217,14 +248,12 @@ This project uses ES Modules syntax:
 - `lodash`: Utility library for data manipulation
 - `debug`: Small debugging utility
 
-
 ## License
 
 ISC
 
 ## Author
 
-copirate : superD
----
+## copirate : superD
 
 **Note**: This application uses an in-memory array for data storage. Data will be lost when the server restarts. For production use, consider integrating a database like MongoDB, PostgreSQL, or MySQL.

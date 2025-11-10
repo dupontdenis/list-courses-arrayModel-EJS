@@ -2,19 +2,24 @@ import pkg from "lodash";
 const { find, pullAllBy } = pkg;
 import { courses } from "../models/courses.js";
 import debug from "debug";
+import { sortBy } from "../utils.mjs";
 
 const debugLog = debug("app_api");
 
 const coursesReadAll = (req, res) => {
-  res.json({ courses: courses });
+  // Get sort keys and order from query params
+  let keys = req.query.sortBy ? req.query.sortBy.split(",") : ["name"];
+  let order = req.query.sortOrder || "asc";
+  const sortedCourses = sortBy(courses, keys, order);
+  console.log("Sorted Courses:", sortedCourses);
+  res.json({ courses: sortedCourses });
 };
 
 const coursesCreateOne = (req, res) => {
   debugLog("---- coursesCreateOne ---");
   const course = {
     id: Math.ceil(Math.random() * 1000),
-    name: req.body.name,
-    info: req.body.info,
+    ...req.body,
   };
   courses.push(course);
   res.json(course);
